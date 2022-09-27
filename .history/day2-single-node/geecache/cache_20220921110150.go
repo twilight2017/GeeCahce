@@ -1,5 +1,0 @@
-package geecache
-
-import (
-	"sync"
-)

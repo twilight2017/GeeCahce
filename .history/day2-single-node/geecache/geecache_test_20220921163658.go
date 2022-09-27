@@ -1,3 +1,0 @@
-package geecache
-
-import "testing"
