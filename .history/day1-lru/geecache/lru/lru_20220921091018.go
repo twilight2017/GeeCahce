@@ -19,7 +19,7 @@ type entry struct {
 }
 
 type Value interface {
-	Len() int
+	Len()
 }
 
 func (c *Cache) Len() int {

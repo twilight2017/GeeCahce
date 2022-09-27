@@ -32,9 +32,9 @@ func TestRemoveoldest(t *testing.T) {
 	v1, v2, v3 := "v1", "v2", "v3"
 	cap := len(k1 + k2 + v1 + v2)
 	lru := New(int64(cap), nil)
-	lru.Add(k1, String(v1))
-	lru.Add(k2, String(v2))
-	lru.Add(k3, String(v3))
+	lru.add(k1, v1)
+	lru.add(k2, v2)
+	lru.add(k3, v3)
 	if _, ok := lru.Get("key1"); ok || lru.Len() != 2 {
 		t.Fatalf("Removeoldest key1 failed")
 	}
@@ -42,7 +42,6 @@ func TestRemoveoldest(t *testing.T) {
 
 //测试回调函数是否起作用
 func TestOnEvicated(t *testing.T) {
-	//回调函数在某条记录被移除时调用
 	keys := make([]string, 0)
 	callback := func(key string, value Value) {
 		keys = append(keys, key)
@@ -51,10 +50,10 @@ func TestOnEvicated(t *testing.T) {
 	lru.Add("key1", String("1"))
 	lru.Add("key2", String("12"))
 	lru.Add("key3", String("123"))
-	lru.Add("key4", String("1234"))
+	lru.Add("key4", String(1234))
 
-	expect := []string{"key1", "key2", "key3"}
+	expect := []string{"key1", "key2"}
 	if !reflect.DeepEqual(expect, keys) {
-		t.Fatalf("Call OnEvicated failed, expect keys equal to %s", expect)
+		t.Fatalf("Call OnEvicated failed, expect keys equal to %s", except)
 	}
 }

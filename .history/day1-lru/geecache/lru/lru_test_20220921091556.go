@@ -51,10 +51,10 @@ func TestOnEvicated(t *testing.T) {
 	lru.Add("key1", String("1"))
 	lru.Add("key2", String("12"))
 	lru.Add("key3", String("123"))
-	lru.Add("key4", String("1234"))
+	lru.Add("key4", String(1234))
 
-	expect := []string{"key1", "key2", "key3"}
+	expect := []string{"key1", "key2"}
 	if !reflect.DeepEqual(expect, keys) {
-		t.Fatalf("Call OnEvicated failed, expect keys equal to %s", expect)
+		t.Fatalf("Call OnEvicated failed, expect keys equal to %s", except)
 	}
 }

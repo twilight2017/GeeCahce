@@ -19,7 +19,7 @@ type entry struct {
 }
 
 type Value interface {
-	Len() int
+	Len()
 }
 
 func (c *Cache) Len() int {
@@ -74,7 +74,7 @@ func (c *Cache) Add(key string, value Value) {
 	if ele, ok := c.cache[key]; ok {
 		c.ll.MoveToFront(ele) //键存在时，更新键的值，并把该节点挪到队尾
 		kv := ele.Value.(*entry)
-		c.nbytes += int64(value.Len()) - int64(kv.value.Len())
+		c.nbytes += int64(value.Len()) - int64(ke.value.Len())
 		kv.value = value //更新value的值
 	} else {
 		//没有该键时新增该键
