@@ -19,3 +19,10 @@ func (v ByteView) ByteSlice() []byte {
 func (v ByteView) String() string {
 	return string(v.b)
 }
+
+//选择byte是为了能够支持任意数据格式类型的存储
+func cloneBytes(b []byte) []byte{
+	c := make([]byte, len(b))
+	copy(c, b)
+	return c
+}

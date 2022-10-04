@@ -76,6 +76,7 @@ func (g *Group) load(key string) (value ByteView, err error){
 	return g.getLocally(key)
 }
 
+//从数据源去获取数据
 func (g *Group)getLocally(key string) (ByteView, error){
 	bytes, err := g.getter.Get(key)
 	if err != nil{
